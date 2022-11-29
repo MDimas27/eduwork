@@ -35,3 +35,61 @@ Cypress.Commands.add('login', (username, password) => {
 
     cy.get('input[name="submit"]').click()
 })
+
+Cypress.Commands.add('login_standard_user', (password) => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.get('input[name="user-name"]').clear()
+    cy.get('input[name="user-name"]').type('standard_user')
+
+    cy.get('input[name="password"]').clear()
+    cy.get('input[name="password"]').type(password)
+
+    cy.get('input[name="login-button"]').click()
+
+    cy.url().should('include', '/inventory')
+
+})
+
+Cypress.Commands.add('login_locked_out_user', (password) => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.get('input[name="user-name"]').clear()
+    cy.get('input[name="user-name"]').type('locked_out_user')
+
+    cy.get('input[name="password"]').clear()
+    cy.get('input[name="password"]').type(password)
+
+    cy.get('input[name="login-button"]').click()
+
+})
+
+Cypress.Commands.add('login_problem_user', (password) => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.get('input[name="user-name"]').clear()
+    cy.get('input[name="user-name"]').type('problem_user')
+
+    cy.get('input[name="password"]').clear()
+    cy.get('input[name="password"]').type(password)
+
+    cy.get('input[name="login-button"]').click()
+
+    cy.url().should('include', '/inventory')
+
+})
+
+Cypress.Commands.add('login_performance_glitch_user', (password) => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.get('input[name="user-name"]').clear()
+    cy.get('input[name="user-name"]').type('performance_glitch_user')
+
+    cy.get('input[name="password"]').clear()
+    cy.get('input[name="password"]').type(password)
+
+    cy.get('input[name="login-button"]').click()
+
+    cy.url().should('include', '/inventory')
+
+})
